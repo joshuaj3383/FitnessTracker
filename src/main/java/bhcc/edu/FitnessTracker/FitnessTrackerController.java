@@ -2,7 +2,9 @@ package bhcc.edu.FitnessTracker;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import tools.jackson.databind.introspect.DefaultAccessorNamingStrategy;
 
 import java.text.DateFormat;
@@ -39,7 +41,7 @@ public class FitnessTrackerController {
         return "index";
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public String add(String route, double miles, String date, Model model) {
         if (route == null || route.isEmpty()) {
             route = "Empty";
@@ -64,7 +66,7 @@ public class FitnessTrackerController {
         return "index";
     }
 
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public String delete(long id, Model model) {
         Run tempRun = runRepository.findById(id);
         runRepository.deleteById(id);
